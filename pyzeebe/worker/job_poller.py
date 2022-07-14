@@ -73,7 +73,7 @@ class JobPoller:
             await asyncio.sleep(5)
 
     def should_poll(self) -> bool:
-        return not self.stop_event.is_set() and (self.zeebe_adapter.connected or self.zeebe_adapter.retrying_connection)
+        return not self.stop_event.is_set()
 
     def calculate_max_jobs_to_activate(self) -> int:
         worker_max_jobs = self.task.config.max_running_jobs - self.task_state.count_active()
